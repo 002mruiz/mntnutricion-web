@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>María Nutricionista</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+--c1:#A8C5A0;
+--c2:#DCEAD7;
+--c3:#F3EF66;
+--c4:#D9B88C;
+--c5:#7A8A6A;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{font-family:Montserrat,sans-serif;color:#333;}
+h1,h2,h3{font-family:'Playfair Display',serif;}
+
+header{
+position:fixed;top:0;width:100%;
+background:#fff;
+display:flex;justify-content:space-between;align-items:center;
+padding:18px 7%;
+box-shadow:0 2px 15px rgba(0,0,0,.08);
+z-index:1000;
+}
+
+.logo h1{color:var(--c5);font-size:2.3rem;line-height:1;}
+.logo p{font-size:.9rem;letter-spacing:2px;}
+.leaf{color:var(--c5);}
+
+nav ul{display:flex;gap:25px;list-style:none;align-items:center;}
+nav a{text-decoration:none;color:#333;font-weight:600;}
+
+.btn{
+background:var(--c3);
+padding:12px 22px;
+border-radius:30px;
+}
+
+.hero{
+min-height:100vh;
+background:var(--c2);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:140px 8% 80px;
+gap:50px;
+}
+
+.hero-text{flex:1;}
+.hero-text h2{font-size:4rem;color:var(--c5);margin-bottom:20px;}
+.hero-text p{font-size:1.3rem;max-width:550px;}
+
+.hero-image{flex:1;}
+.hero-image img{
+width:100%;
+max-width:550px;
+border-radius:25px;
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+section{padding:90px 8%;}
+.section-title{text-align:center;color:var(--c5);font-size:2.5rem;margin-bottom:40px;}
+
+.about-grid{display:grid;gap:15px;max-width:900px;margin:auto;}
+.about-item{
+background:var(--c2);
+padding:20px;
+border-radius:15px;
+}
+
+.about-container{
+display:flex;
+align-items:center;
+gap:20px;
+max-width:1000px;
+margin:auto;
+}
+
+.about-image{
+flex:0 0 280px;
+}
+
+.about-image img{
+max-width:250px;
+width:100%;
+border-radius:25px;
+}
+
+.about-content{
+flex:1;
+}
+
+.about-content{
+flex:1;
+}
+
+@media(max-width:900px){
+.about-container{
+flex-direction:column;
+}
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:#fff;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.card h3{color:var(--c5);margin-bottom:10px;}
+
+.accordion{
+width:100%;
+border:none;
+padding:15px;
+background:var(--c1);
+border-radius:12px;
+font-size:1rem;
+font-weight:700;
+cursor:pointer;
+}
+
+.panel{
+display:none;
+margin-top:10px;
+background:var(--c2);
+padding:15px;
+border-radius:12px;
+}
+
+.panel ul{padding-left:20px;}
+.panel li{margin-bottom:8px;}
+
+.steps{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.step{
+background:var(--c2);
+padding:30px;
+border-radius:20px;
+text-align:center;
+}
+
+.contact{
+text-align:center;
+}
+
+.contact a{
+display:block;
+margin:15px 0;
+font-size:1.1rem;
+font-weight:600;
+text-decoration:none;
+color:var(--c5);
+}
+
+.highlight{
+position:sticky;
+bottom:0;
+background:var(--c3);
+padding:14px;
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+font-weight:700;
+z-index:999;
+}
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+color:white;
+text-decoration:none;
+z-index:1001;
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+footer{
+background:var(--c5);
+color:white;
+text-align:center;
+padding:20px;
+}
+
+
+/* =========================
+   MENÚ HAMBURGUESA
+   ========================= */
+
+.menu-toggle{
+display:none;
+}
+
+
+/* =========================
+   ADAPTACIÓN PARA MÓVIL
+   ========================= */
+
+@media(max-width:900px){
+
+header{
+position:relative;
+flex-direction:column;
+gap:15px;
+}
+
+nav{
+width:100%;
+}
+
+.menu-toggle{
+display:block;
+background:none;
+border:none;
+font-size:1.8rem;
+color:var(--c5);
+cursor:pointer;
+margin:0 auto;
+}
+
+nav ul{
+display:none;
+flex-direction:column;
+align-items:center;
+gap:15px;
+width:100%;
+margin-top:10px;
+}
+
+nav ul.menu-open{
+display:flex;
+}
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero-image{
+width:100%;
+}
+
+.hero-image img{
+width:100%;
+height:auto;
+}
+
+.about-container{
+flex-direction:column;
+}
+
+.about-image{
+width:100%;
+text-align:center;
+}
+
+.about-content{
+width:100%;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.steps{
+grid-template-columns:1fr;
+}
+
+.highlight{
+position:relative;
+}
+
+}
+
+
+/* =========================
+   AJUSTES PARA PANTALLAS
+   MUY PEQUEÑAS
+   ========================= */
+
+@media(max-width:600px){
+
+header{
+padding:18px 20px;
+}
+
+nav ul{
+gap:15px;
+}
+
+nav a{
+font-size:.85rem;
+}
+
+.hero{
+padding:60px 20px 50px;
+gap:30px;
+}
+
+.hero-text{
+width:100%;
+}
+
+.hero-text h2{
+line-height:1.15;
+}
+
+.hero-text p{
+line-height:1.6;
+}
+
+.hero-image{
+width:100%;
+}
+
+.hero-image img{
+max-width:100%;
+}
+
+section{
+padding:60px 20px;
+}
+
+.about-image img{
+max-width:250px;
+}
+
+.about-item{
+line-height:1.5;
+}
+
+.card{
+padding:22px;
+}
+
+.step{
+padding:25px 20px;
+}
+
+.contact a{
+overflow-wrap:anywhere;
+}
+
+.highlight{
+padding:15px 20px;
+text-align:center;
+}
+
+.whatsapp{
+width:55px;
+height:55px;
+right:15px;
+bottom:15px;
+font-size:28px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<h1>María</h1>
+<p>NUTRICIONISTA</p>
+</div>
+
+<nav>
+
+<button class="menu-toggle" aria-label="Abrir menú">
+<i class="fas fa-bars"></i>
+</button>
+
+<ul>
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#sobre">Sobre mí</a></li>
+<li><a href="#servicios">Servicios</a></li>
+<li><a href="#funciona">Cómo funciona</a></li>
+<li><a href="#contacto">Contacto</a></li>
+<li><a class="btn" href="https://calendar.app.google/XMCDQCVjkkkRvzJU9" target="_blank">Agendar cita</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+
+<section class="hero" id="inicio">
+
+<div class="hero-text">
+<h2>Mide. Nutre. Transforma.</h2>
+<p>Plan nutricional personalizado para ayudarte a conseguir tus objetivos.</p>
+</div>
+
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1200" alt="Plato saludable">
+</div>
+
+</section>
+
+
+<section id="sobre">
+
+<h2 class="section-title">Sobre mí</h2>
+
+<div class="about-container">
+
+<div class="about-image">
+<img src="foto-web.jpeg" alt="María Nutricionista">
+</div>
+
+<div class="about-content">
+
+<div class="about-grid">
+
+<div class="about-item">
+Nutricionista y dietista diplomada por la UV.
+</div>
+
+<div class="about-item">
+Acreditación ISAK 1 en antropometría.
+</div>
+
+<div class="about-item">
+Máster de Nutricionista en fútbol avanzado por FSI Training.
+</div>
+
+<div class="about-item">
+Ayudo a personas a mejorar su alimentación con planes personalizados.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="servicios">
+
+<h2 class="section-title">Servicios</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Antropometría ISAK 1  30€</h3>
+<p>Valoración completa de la composición corporal.</p>
+</div>
+
+
+<div class="card">
+
+<button class="accordion">
+Nutrición clínica ▼
+</button>
+
+<div class="panel">
+
+<ul>
+<li>Pérdida de peso: planes adaptados a tus objetivos.</li>
+<li>Alimentación saludable.</li>
+<li>Nutrición en el embarazo.</li>
+<li>Dieta FODMAP.</li>
+<li>Dieta ERGE.</li>
+<li>Nutrición en la menopausia.</li>
+<li>Diabetes.</li>
+<li>Dieta para epilépticos.</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="card">
+<h3>Nutrición deportiva</h3>
+<p>Mejora tu rendimiento.</p>
+</div>
+
+
+<div class="card">
+<h3>Educación alimentaria</h3>
+<p>Conoce más sobre una alimentación saludable.</p>
+</div>
+
+
+<div class="card">
+<h3>Consulta online 45€</h3>
+<h3>Seguimiento 35€</h3>
+<p>Sesiones desde cualquier lugar.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="funciona">
+
+<h2 class="section-title">¿Cómo funciona?</h2>
+
+<div class="steps">
+
+<div class="step">
+<h3>Paso 1</h3>
+<p>Elige día y hora que mejor te venga.</p>
+</div>
+
+<div class="step">
+<h3>Paso 2</h3>
+<p>Realizamos una primera consulta personalizada. Analizamos tus hábitos y objetivos.</p>
+</div>
+
+<div class="step">
+<h3>Paso 3</h3>
+<p>Recibes tu plan nutricional adaptado a ti.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="contact" id="contacto">
+
+<h2 class="section-title">Contacto</h2>
+
+<a href="https://wa.me/34722540005" target="_blank">
+WhatsApp: +34 722 54 00 05
+</a>
+
+<a href="https://instagram.com/mariarzst_nutricion" target="_blank">
+Instagram: mariarzst_nutricion
+</a>
+
+<a href="mailto:mariarzstnutricion@gmail.com">
+mariarzstnutricion@gmail.com
+</a>
+
+</section>
+
+
+<div class="highlight">
+
+<span>
+Nutrición clínica: planes nutricionales adaptados a tus objetivos
+</span>
+
+<span>
+Nutrición deportiva: mejora tu rendimiento
+</span>
+
+<span>
+Consulta online desde cualquier lugar
+</span>
+
+</div>
+
+
+<a class="whatsapp" href="https://wa.me/34722540005" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+
+<footer>
+© María Nutricionista
+</footer>
+
+
+<script>
+
+document.querySelector('.accordion').addEventListener('click', function(){
+
+const panel=document.querySelector('.panel');
+
+panel.style.display =
+panel.style.display==='block'
+? 'none'
+: 'block';
+
+});
+
+
+/* Menú hamburguesa */
+
+document.querySelector('.menu-toggle').addEventListener('click', function(){
+
+const menu = document.querySelector('nav ul');
+
+menu.classList.toggle('menu-open');
+
+});
+
+
+/* Cerrar menú al pulsar un enlace */
+
+document.querySelectorAll('nav ul a').forEach(function(link){
+
+link.addEventListener('click', function(){
+
+document.querySelector('nav ul').classList.remove('menu-open');
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
